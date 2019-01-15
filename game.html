@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dalton's Law of Partial Pressures Jeopardy</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Nunito" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-image: url("barometer.jpg");
+            background-repeat: no-repeat;
+            background-size: cover
+        }
+
+        .box {
+            padding: 40px;
+            display: block;
+        }
+
+        .gradient-45deg-green {
+            background: #1de9b6;
+            background: -webkit-linear-gradient(45deg, #1de9b6 0%, #4dd0e1 100%);
+            background: linear-gradient(45deg, #1de9b6 0%, #4dd0e1 100%);
+            box-shadow: 0 13px 30px 0 rgba(100, 255, 218, 0.5);
+        }
+
+        .gradient-45deg-red {
+            background: #e91e63;
+            background: -webkit-linear-gradient(45deg, #e91e63 0%, #f48fb1 100%);
+            background: linear-gradient(45deg, #e91e63 0%, #f48fb1 100%);
+            box-shadow: 0 13px 30px 0 rgba(100, 255, 218, 0.5);
+        }
+
+        .text {
+            font-family: 'Nunito', sans-serif;
+            font-size: 22px;
+            height: 100px;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 25px;
+        }
+
+        .modaltext {
+            font-family: 'Nunito', sans-serif;
+            font-size: 22px;
+        }
+    </style>
+</head>
+<body>
+<script
+        src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
+        crossorigin="anonymous"></script>
+
+<div class="box container" id="grid">
+    <div class="row">
+        <div class="col s4"><h3>Calculations</h3></div>
+        <div class="col s4"><h3>Theory</h3></div>
+        <div class="col s4"><h3>???</h3></div>
+    </div>
+</div>
+
+<!-- Questions -->
+
+<audio tabindex="0" id="jeopardymusic" style='display: none;' controls preload="auto">
+    <source src="music.mp3">
+</audio>
+
+<div id="modals"></div>
+
+<!-- JS -->
+
+<script>
+    // add questions here
+    addModalDisplay("modal00", `
+    The partial pressure of nitrogen in a gas mixture is 5.83 atm, and the partial pressure of
+            hydrogen in the same gas mixture was measured to be 3.80 atm.
+            <br/><br/>
+            <b>What is the total pressure of the gas mixture, if nitrogen and hydrogen are the only gases in
+                the gas mixture?</b>
+    `, `
+    <div id="modal00l"></div>
+    `);
+    addModalDisplay("modal01", `<b>The total pressure of a gas mixture is equal to the ___ of the partial pressures of each of the gases in the mixture.</b>`, `Sum`);
+    addModalDisplay("modal02", `<b>What is this room's room number?</b>`, `130`);
+
+    $(document).ready(function() {
+        katex.render(String.raw`P_{total} = P_N + P_H \\ P_{total} = 5.83atm + 3.80atm \\ P_{total} = 9.63atm`, document.getElementById("modal00l"), {throwOnError:false});
+    });
+
+    addModalDisplay("modal10", `<b>A gas mixture containing hydrogen, xenon, and fluorine. The total pressure of the mixture is 587 kPa. <br/>What is the partial pressure of fluorine if the partial pressure of hydrogen is 132 kPa and the partial pressure of xenon is 288 kPa?</b>`, `<div id="modal10l"></div>`);
+    addModalDisplay("modal11", `<b>Pressure is the frequency of _____ between gas molecules and the walls of its container.</b>`, `collisions`);
+    addModalDisplay("modal12", `<b>As divers descend into water, the partial pressure of oxygen increases. As a result, the concentration of oxygen in the blood _____.</b>`, `increases`);
+
+    $(document).ready(function() {
+        katex.render(String.raw`P_{total} = P_H + P_{Xe} + P_F \\ P_F = P_{total} - P_H - P_{Xe} \\ P_F = 587kPa - 132kPa - 288kPa \\ P_F = 167kPa`, document.getElementById("modal10l"), {throwOnError:false});
+    });
+
+    addModalDisplay("modal20", `
+    A gas mixture is composed of neon, hydrogen, and argon. If the total pressure is 1.84 atm, <b>what is the partial pressure of hydrogen</b> if neon’s partial pressure is half of the total pressure and argon’s partial pressure is half of the neon's partial pressure?
+    `, `<div id="modal20l"></div>`);
+    addModalDisplay("modal21", `<b>Partial pressure is directly _______ to number of moles when the other variables are constant (for ideal gas law).</b>`, `Proportional`);
+    addModalDisplay("modal22", `<b>The ratio of partial pressure to total pressure and number of moles to total number of moles is _____ for a single gas in a gas mixture.</b>`, `equal`);
+
+    $(document).ready(function() {
+        katex.render(String.raw`P_{total} = P_{H} + P_{Ne} + P_{Ar} \\ P_{H} = P_{total} - P_{Ne} - P_{Ar} \\ P_{H} = 1.84atm - \frac{1}{2} \cdot 1.84atm - \frac{1}{2} \cdot \frac{1}{2} \cdot 1.84atm \\ P_{H} = 0.460atm`, document.getElementById("modal20l"), {throwOnError:false});
+    });
+
+    addModalDisplay("modal30", `<b>The total pressure of a gas mixture consisting of oxygen, nitrogen and hydrogen is 3.58kPa. <br/></br>If the partial pressure of oxygen is 1.23kPa and the partial pressure of nitrogen is 0.580kPa, what is the partial pressure of hydrogen (in atm)? <br/><br/>1atm = 101.325kPa</b>`, `<div id="modal30l"></div>`);
+    addModalDisplay("modal31", `<b>In order for the total pressure to be equal to the sum of partial pressures, the gases in the container must not _____ with each other. </b>`, `react`);
+    addModalDisplay("modal32", `<b>______ bubbling out of the blood causes divers to have the bends.</b>`, `Nitrogen`);
+
+    $(document).ready(function() {
+        katex.render(String.raw`P_{total} = P_O + P_N + P_H \\ P_H = P_{total} - P_O - P_N \\ P_H = 3.58kPa - 1.23kPa - 0.58kPa \\ P_H = 1.77kPa \cdot \frac{1atm}{101.325kPa} \\ P_H = 0.017kPa`, document.getElementById("modal30l"), {throwOnError:false});
+    });
+
+    addModalDisplay("modal40", `<b>If the partial pressure of hydrogen gas is 1.3 atm, and the partial pressure of nitrogen gas is 2.4 atm in a hydrogen + nitrogen gas mixture, what is the number of moles of nitrogen if the total number moles in the mixture is 5.0?</b>`, `<div id="modal40l"></div>`);
+    addModalDisplay("modal41", `<b>The partial pressure does not change when a gas is added to a gas mixture of the same container and temperature, because the _____ __ _____ has not changed.</b>`, `number of moles`);
+    addModalDisplay("modal42", `<b>How would you find the temperature of a gas if you were given its partial pressure, number of moles, and volume?<br/><br/>Give the equation.</b>`, `T = (PV) / (nR)`);
+
+    $(document).ready(function() {
+        katex.render(String.raw`\frac{n_N}{n_{total}} = \frac{P_N}{P_{total}} \\ \frac{n_N}{5.0mol} = \frac{2.4atm}{1.3atm + 2.4atm} \\ n_N = 3.6mol`, document.getElementById("modal40l"), {throwOnError:false});
+    });
+
+    // code below
+
+    let stopT = Math.random();
+    const delay = ms => new Promise(res => setTimeout(res, ms));
+
+    function addModalDisplay(name, question, answer) {
+        document.getElementById("modals").innerHTML += `
+        <div id="` + name + `" class="modal">
+    <div class="modal-content">
+        <p class="modaltext">` + question + `</p>
+        <div class="countdown">
+        </div>
+        <br/>
+        <a onclick="stopTimer()" style="" class="waves-effect">Stop Timer</a>
+        <br/><br/>
+        <a class="waves-effect showanswers" onclick="showAnswer()" style="display: none;">Show Answer</a>
+        <br/>
+        <div class="answers modaltext" style="display: none;">
+            ` + answer + `
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a onclick="exitModal()" class="modal-close waves-effect waves-green btn-flat">Done</a>
+    </div>
+</div>
+        `
+    }
+
+    async function timer(start) {
+        stopT = Math.random();
+        let ori = stopT;
+        for (let i = start; i >= 0 && (stopT === ori); i--) {
+            let count = document.getElementsByClassName("countdown");
+            for (let j = 0; j < count.length; j++) {
+                count.item(j).innerHTML = "<b>" + i + "</b>";
+            }
+            await delay(1000);
+        }
+        if (stopT === ori) stopTimer();
+    }
+
+    function startTimer(elem, num) {
+        elem.classList.remove("gradient-45deg-green");
+        elem.classList.add("gradient-45deg-red");
+        //elem.classList.remove("modal-trigger");
+        elem.click(function (e) {
+            e.stopPropagation();
+        });
+        let start = 30;
+        if (num === 0) {
+            start = 45;
+        }
+        document.getElementById("jeopardymusic").play();
+        timer(start);
+    }
+
+    function stopMusic() {
+        document.getElementById("jeopardymusic").pause();
+        document.getElementById("jeopardymusic").currentTime = 0;
+    }
+
+    function showAnswer() {
+        let answers = document.getElementsByClassName("answers");
+        for (let i = 0; i < answers.length; i++) {
+            answers.item(i).style.display = "block";
+        }
+    }
+
+    function stopTimer() {
+        stopT = Math.random();
+        stopMusic();
+        let answers = document.getElementsByClassName("showanswers");
+        for (let i = 0; i < answers.length; i++) {
+            answers.item(i).style.display = "block";
+        }
+    }
+
+    function exitModal() {
+        stopMusic();
+        let answers = document.getElementsByClassName("answers");
+        let showanswers = document.getElementsByClassName("showanswers");
+        for (let i = 0; i < answers.length; i++) {
+            answers.item(i).style.display = "none";
+            showanswers.item(i).style.display = "none";
+        }
+    }
+
+    let str = "";
+    for (let i = 0; i < 5; i++) {
+        str += '<div class="row">';
+        for (let j = 0; j < 3; j++) {
+            str += '<div class="col s4 row"><a class="col s12 waves-effect gradient-45deg-green text modal-trigger" onclick="startTimer(this, ' + j + ')" href="#modal' + i + '' + j + '"><br/>$' + ((i + 1) * 100) + '<br/></a></div>';
+        }
+        str += '</div>';
+    }
+    document.getElementById("grid").innerHTML += str;
+
+    document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('.modal');
+        var instances = M.Modal.init(elems, {
+            dismissible: false
+        });
+    });
+</script>
+</body>
+</html>
